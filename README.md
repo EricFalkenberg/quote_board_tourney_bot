@@ -11,3 +11,4 @@ If this somehow fits your use case, create your own discord bot and fill out the
 
 ### Running
 You know the drill. `python main.py`
+The results will create the file `quotes.csv` and write the output into it.
