@@ -1,3 +1,6 @@
+from datetime import datetime
+from discord.ext import commands
+
 
 def parse_message(message):
     lines = message.split('\n')
@@ -17,5 +20,20 @@ def reaction_count(message):
     return count
 
 
-def format_date(created_at):
-    return f'{created_at.month}/{created_at.day}/{created_at.year}'
+def format_date(created_at: datetime):
+    return created_at.strftime("%m/%d/%Y")
+
+
+def today_as_string():
+    return format_date(datetime.now())
+
+
+def parse_date(input_date: str):
+    try:
+        return datetime.strptime(input_date, "%d/%m/%y")
+    except ValueError:
+        pass
+    try:
+        return datetime.strptime(input_date, "%d/%m/%Y")
+    except ValueError:
+        raise commands.BadArgument(f"Incorrect date format {input_date}. Expected dd/mm/yyyy format.")
