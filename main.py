@@ -7,7 +7,12 @@ bot, config = setup()
 
 
 @bot.command()
-async def spreadsheet(ctx, starting: parse_date, ending: parse_date):
+async def open_the_pod_bay_doors(ctx):
+    await ctx.send(f"I'm afraid I can't let you do that, {ctx.message.author.mention}")
+
+
+@bot.command()
+async def quotes(ctx, starting: parse_date, ending: parse_date):
     async with ctx.typing():
         channel = await bot.fetch_channel(config['discord']['quote_channel'])
         with open('quotes.csv', 'w') as csvfile:
